@@ -43,20 +43,20 @@ window.onload = function () {
 
 
     birdImg = new Image();
-    birdImg.src = "./flappybird.png";
+    birdImg.src = "bilder/flappybird.gif";
     birdImg.onload = function () {
         context.drawImage(birdImg, bird.x, bird.y, bird.width, bird.height);
     }
 
     topPipeImg = new Image();
-    topPipeImg.src = "./toppipe.png";
+    topPipeImg.src = "bilder/toppipe.png";
 
 
     bottomPipeImg = new Image();
-    bottomPipeImg.src = "./bottompipe.png"
+    bottomPipeImg.src = "bilder/bottompipe.png"
 
 
-    requestAnimationFrame(update);
+    requestAnimationFrame(oppdater);
     setInterval(placePipes, 1500);
 
 }
@@ -68,8 +68,11 @@ function oppdater() {
 
 
     hastighetY += gravitasjon
-    bird.y = Math.max(bird.y + hastighetY, 0);
+    bird.y = bird.y + hastighetY
     context.drawImage(birdImg, bird.x, bird.y, bird.width, bird.height);
+
+    // Sjekk om brukeren trykkre space:
+    hastighetY -= 10
 
 }
 
