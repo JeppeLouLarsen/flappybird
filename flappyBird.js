@@ -32,9 +32,11 @@ let bottomPipeImg;
 
 let hastighetY = 0;
 let hastighetX = -2;
-let gravitasjon = 0.4
+let gravitasjon = 0.2
 
 window.onload = function () {
+
+    document.addEventListener("keydown", moveBird);
 
     board = document.getElementById("board");
     board.height = boardHeight;
@@ -71,12 +73,7 @@ function oppdater() {
     bird.y = bird.y + hastighetY
     context.drawImage(birdImg, bird.x, bird.y, bird.width, bird.height);
 
-    
-    function moveBird(event){
-        if(event.code == 'Space'){
-            hastighetY = -6;
-        }
-    }
+
 
 }
 
@@ -93,5 +90,11 @@ function placePipes() {
     }
 
     pipeArray.push(topPipe);
+}
+
+function moveBird(event) {
+    if (event.code === "Space") {
+        hastighetY = -6;
+    }
 }
 
