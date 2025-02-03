@@ -71,8 +71,12 @@ function oppdater() {
     bird.y = bird.y + hastighetY
     context.drawImage(birdImg, bird.x, bird.y, bird.width, bird.height);
 
-    // Sjekk om brukeren trykkre space:
-    hastighetY -= 10
+    
+    function moveBird(event){
+        if(event.code == 'Space'){
+            hastighetY = -6;
+        }
+    }
 
 }
 
