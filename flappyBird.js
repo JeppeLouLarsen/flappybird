@@ -73,7 +73,11 @@ function oppdater() {
     bird.y = bird.y + hastighetY
     context.drawImage(birdImg, bird.x, bird.y, bird.width, bird.height);
 
-
+    for (let i = 0; i < pipeArray.length; i++) {
+        let pipe = pipeArray[i];
+        pipe.x += hastighetX
+        context.drawImage(pipe.img, pipe.x, pipe.y, pipe.width, pipe.height);
+    }
 
 }
 
@@ -92,8 +96,8 @@ function placePipes() {
     pipeArray.push(topPipe);
 }
 
-function moveBird(event) {
-    if (event.code === "Space") {
+function moveBird(trykk) {
+    if (trykk.code === "Space") {
         hastighetY = -6;
     }
 }
