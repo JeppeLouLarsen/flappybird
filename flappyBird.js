@@ -7,11 +7,13 @@ let boardWidth = bodyWidth
 let boardHeight = bodyHeight
 let context;
 
-let birdWidth = 50;
-let birdHeight = 50;
+let birdWidth = 35;
+let birdHeight = 35;
 let birdX = boardWidth / 8;
 let birdY = boardHeight / 2;
 let birdImg;
+
+let gameOver = false
 
 let bird = {
     x: birdX,
@@ -66,6 +68,11 @@ window.onload = function () {
 function oppdater() {
     requestAnimationFrame(oppdater);
 
+    if(gameOver){
+        return;
+    }
+
+
     context.clearRect(0, 0, board.width, board.height);
 
 
@@ -73,15 +80,28 @@ function oppdater() {
     bird.y = bird.y + hastighetY
     context.drawImage(birdImg, bird.x, bird.y, bird.width, bird.height);
 
+
+
+
     for (let i = 0; i < pipeArray.length; i++) {
         let pipe = pipeArray[i];
         pipe.x += hastighetX
         context.drawImage(pipe.img, pipe.x, pipe.y, pipe.width, pipe.height);
+
+        if(kollisjon(bird,pipe)){
+            gameOver = true;
+        }
     }
+
 
 }
 
 function placePipes() {
+
+    if(gameOver){
+        return;
+    }
+
 
     let randomPipeY = pipeY - pipeHeight / 4 - Math.random() * (pipeHeight / 2);
     let åpning = board.height / 4;
@@ -115,5 +135,12 @@ function moveBird(trykk) {
     if (trykk.code === "Space") {
         hastighetY = -6;
     }
+}
+
+function kollisjon(a, b) {
+    return  a.x < b.x + b.width &&
+            a.x + a.width > b.x &&
+            a.y < b.y + b.height &&
+            a.y + a.height > b.y;
 }
 
