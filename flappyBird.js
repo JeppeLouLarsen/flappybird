@@ -83,7 +83,8 @@ function oppdater() {
 
 function placePipes() {
 
-    let randomPipeY = pipeY - pipeHeight/4 - Math.random()*(pipeHeight/2);
+    let randomPipeY = pipeY - pipeHeight / 4 - Math.random() * (pipeHeight / 2);
+    let åpning = board.height / 4;
 
     let topPipe = {
         img: topPipeImg,
@@ -96,6 +97,18 @@ function placePipes() {
     }
 
     pipeArray.push(topPipe);
+
+    let bottomPipe = {
+        img: bottomPipeImg,
+        x: pipeX,
+        y: randomPipeY + pipeHeight + åpning,
+        width: pipeWidth,
+        height: pipeHeight,
+        passed: false
+
+    }
+
+    pipeArray.push(bottomPipe);
 }
 
 function moveBird(trykk) {
