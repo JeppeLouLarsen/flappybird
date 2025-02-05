@@ -34,8 +34,8 @@ let topPipeImg;
 let bottomPipeImg;
 
 let hastighetY = 0;
-let hastighetX = -2;
-let gravitasjon = 0.2
+let hastighetX = -4;
+let gravitasjon = 0.4
 
 window.onload = function () {
 
@@ -98,6 +98,10 @@ function oppdater() {
         if (kollisjon(bird, pipe)) {
             gameOver = true;
         }
+
+        if ( bird.x > pipe.x + pipe.width){
+            score ++
+        }
     }
 
     context.fillStyle = "white";
@@ -146,7 +150,7 @@ function placePipes() {
 
 function moveBird(trykk) {
     if (trykk.code === "Space") {
-        hastighetY = -4;
+        hastighetY = -6;
     }
 }
 
