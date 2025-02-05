@@ -146,7 +146,7 @@ function placePipes() {
 
 function moveBird(trykk) {
     if (trykk.code === "Space") {
-        hastighetY = -6;
+        hastighetY = -4;
     }
 }
 
