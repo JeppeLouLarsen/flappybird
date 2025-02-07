@@ -7,8 +7,8 @@ let boardWidth = bodyWidth
 let boardHeight = bodyHeight
 let context;
 
-let birdWidth = 35;
-let birdHeight = 35;
+let birdWidth = 50;
+let birdHeight = 45;
 let birdX = boardWidth / 8;
 let birdY = boardHeight / 2;
 let birdImg;
@@ -25,7 +25,7 @@ let bird = {
 
 
 let pipeArray = [];
-let pipeWidth = 64;
+let pipeWidth = 75;
 let pipeHeight = 512;
 let pipeX = boardWidth;
 let pipeY = 0;
@@ -34,7 +34,7 @@ let topPipeImg;
 let bottomPipeImg;
 
 let hastighetY = 0;
-let hastighetX = -4;
+let hastighetX = -3;
 let gravitasjon = 0.4
 
 window.onload = function () {
@@ -99,9 +99,20 @@ function oppdater() {
             gameOver = true;
         }
 
-        if ( bird.x > pipe.x + pipe.width){
-            score ++
+        if ( !pipe.passed && bird.x > pipe.x + pipe.width){
+            score += 0.5;
+            pipe.passed = true;
         }
+
+        if (gameOver) {
+            context.fillText("GAME OVER", 500, 250);
+            context.fillText("Score:", 500, 300);
+            context.fillText(score, 650, 300);
+        }
+
+
+
+
     }
 
     context.fillStyle = "white";
