@@ -99,19 +99,17 @@ function oppdater() {
             gameOver = true;
         }
 
-        if ( !pipe.passed && bird.x > pipe.x + pipe.width){
+        if (!pipe.passed && bird.x > pipe.x + pipe.width) {
             score += 0.5;
             pipe.passed = true;
         }
 
         if (gameOver) {
             context.fillText("GAME OVER", 500, 250);
-            context.fillText("Score:", 500, 300);
-            context.fillText(score, 650, 300);
+            context.fillText("Score:", 550, 300);
+            context.fillText(score, 700, 300);
+
         }
-
-
-
 
     }
 
