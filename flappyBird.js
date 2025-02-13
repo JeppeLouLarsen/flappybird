@@ -37,6 +37,19 @@ let hastighetY = 0;
 let hastighetX = -3;
 let gravitasjon = 0.4
 
+let gameHeight = 300
+let gameWidth = 300
+let gameY = (boardHeight-gameHeight)/2;
+let gameX = (boardWidth-gameWidth)/2;
+
+let game = {
+    x: gameX,
+    y: gameY,
+    width: gameWidth,
+    height: gameHeight
+}
+
+
 window.onload = function () {
 
     document.addEventListener("keydown", moveBird);
@@ -59,6 +72,9 @@ window.onload = function () {
 
     bottomPipeImg = new Image();
     bottomPipeImg.src = "bilder/bottompipe.png"
+
+    gameImg = new Image();
+    gameImg.src = "bilder/gameover.png";
 
 
     requestAnimationFrame(oppdater);
@@ -105,16 +121,18 @@ function oppdater() {
         }
 
         if (gameOver) {
-            context.fillText("GAME OVER", 500, 250);
-            context.fillText("Score:", 550, 300);
-            context.fillText(score, 700, 300);
+            context.fillText("Score:", 550, 400);
+            context.fillText(score, 700, 400);
+
+            context.drawImage(gameImg, game.x, game.y, game.width, game.height );
 
         }
 
+
     }
 
-    context.fillStyle = "white";
-    context.font = "45px sans-serif";
+    context.fillStyle = "black";
+    context.font = "45px 'JetBrains Mono', monoscape";
     context.fillText(score, 5, 45);
 
 
