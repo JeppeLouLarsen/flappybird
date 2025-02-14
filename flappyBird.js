@@ -121,8 +121,8 @@ function oppdater() {
         }
 
         if (gameOver) {
-            context.fillText("Score:", 550, 400);
-            context.fillText(score, 700, 400);
+            context.fillText("Score:", 525, 400);
+            context.fillText(score, 725, 400);
 
             context.drawImage(gameImg, game.x, game.y, game.width, game.height );
 
@@ -132,7 +132,7 @@ function oppdater() {
     }
 
     context.fillStyle = "black";
-    context.font = "45px 'JetBrains Mono', monoscape";
+    context.font = "30px 'Press Start 2P', sans-serif";
     context.fillText(score, 5, 45);
 
 
