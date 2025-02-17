@@ -49,6 +49,10 @@ let game = {
     height: gameHeight
 }
 
+let highScore = 0
+
+
+
 
 window.onload = function () {
 
@@ -126,6 +130,10 @@ function oppdater() {
 
             context.drawImage(gameImg, game.x, game.y, game.width, game.height );
 
+            addNewScore();
+
+            drawHighScore();
+
         }
 
 
@@ -134,6 +142,8 @@ function oppdater() {
     context.fillStyle = "black";
     context.font = "30px 'Press Start 2P', sans-serif";
     context.fillText(score, 5, 45);
+    context.fillText("High Score:", 850, 45);
+    
 
 
 }
@@ -187,4 +197,20 @@ function kollisjon(a, b) {
         a.y < b.y + b.height &&
         a.y + a.height > b.y;
 }
+
+function addNewScore(){
+    let newScore = score
+    if(newScore > highScore){
+        highScore = newScore
+    }
+}
+
+function drawHighScore(){
+    context.fillText(highScore, 1185, 45);
+}
+
+
+
+
+
 
