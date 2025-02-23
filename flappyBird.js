@@ -58,6 +58,7 @@ window.onload = function () {
 
     document.addEventListener("keydown", moveBird);
 
+
     board = document.getElementById("board");
     board.height = boardHeight;
     board.width = boardWidth;
@@ -128,6 +129,8 @@ function oppdater() {
             context.fillText("Score:", 525, 400);
             context.fillText(score, 725, 400);
 
+            context.fillText("Restart", 535, 450);
+
             context.drawImage(gameImg, game.x, game.y, game.width, game.height );
 
             addNewScore();
@@ -143,6 +146,7 @@ function oppdater() {
     context.font = "30px 'Press Start 2P', sans-serif";
     context.fillText(score, 5, 45);
     context.fillText("High Score:", 850, 45);
+    context.fillText(highScore, 1185, 45);
     
 
 
@@ -208,6 +212,38 @@ function addNewScore(){
 function drawHighScore(){
     context.fillText(highScore, 1185, 45);
 }
+
+function restartGame() {
+    gameOver = false;
+    score = 0;
+    bird.y = boardHeight / 2;
+    hastighetY = 0;
+    pipeArray = [];
+}
+
+function handleRestartClick(event) {
+    if (!gameOver) return;
+
+    let clickX = event.clientX;
+    let clickY = event.clientY;
+
+    let restartX = 535;
+    let restartY = 450;
+    let restartWidth = 150;  
+    let restartHeight = 40; 
+
+    if (
+        clickX >= restartX &&
+        clickX <= restartX + restartWidth &&
+        clickY >= restartY - restartHeight &&
+        clickY <= restartY
+    ) {
+        restartGame();
+    }
+}
+
+document.addEventListener("click", handleRestartClick);
+
 
 
 
