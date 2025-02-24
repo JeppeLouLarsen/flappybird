@@ -126,9 +126,12 @@ function oppdater() {
         }
 
         if (gameOver) {
+            context.fillStyle = "yellow"
             context.fillText("Score:", 525, 400);
             context.fillText(score, 725, 400);
 
+
+            context.fillStyle = "red";
             context.fillText("Restart", 535, 450);
 
             context.drawImage(gameImg, game.x, game.y, game.width, game.height );
@@ -142,7 +145,7 @@ function oppdater() {
 
     }
 
-    context.fillStyle = "black";
+    context.fillStyle = "yellow";
     context.font = "30px 'Press Start 2P', sans-serif";
     context.fillText(score, 5, 45);
     context.fillText("High Score:", 850, 45);
