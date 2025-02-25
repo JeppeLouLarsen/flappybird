@@ -36,6 +36,7 @@ let bottomPipeImg;
 let hastighetY = 0;
 let hastighetX = -3;
 let gravitasjon = 0.4
+let speedIncrease = 0.0005
 
 let gameHeight = 300
 let gameWidth = 300
@@ -51,6 +52,9 @@ let game = {
 
 let highScore = 0
 
+
+let lastPipeX = boardWidth;
+let pipeSpacing = 250; 
 
 
 
@@ -83,7 +87,7 @@ window.onload = function () {
 
 
     requestAnimationFrame(oppdater);
-    setInterval(placePipes, 1500);
+    
 
 }
 
@@ -96,6 +100,10 @@ function oppdater() {
 
 
     context.clearRect(0, 0, board.width, board.height);
+
+    hastighetX -= speedIncrease;
+
+
 
 
     hastighetY += gravitasjon
@@ -113,7 +121,7 @@ function oppdater() {
 
     for (let i = 0; i < pipeArray.length; i++) {
         let pipe = pipeArray[i];
-        pipe.x += hastighetX
+        pipe.x += hastighetX;
         context.drawImage(pipe.img, pipe.x, pipe.y, pipe.width, pipe.height);
 
         if (kollisjon(bird, pipe)) {
@@ -126,6 +134,7 @@ function oppdater() {
         }
 
         if (gameOver) {
+
             context.fillStyle = "yellow"
             context.fillText("Score:", 525, 400);
             context.fillText(score, 725, 400);
@@ -144,6 +153,12 @@ function oppdater() {
 
 
     }
+
+    if (pipeArray.length === 0 || boardWidth - pipeArray[pipeArray.length - 1].x > pipeSpacing) {
+        placePipes();
+      }
+
+    
 
     context.fillStyle = "yellow";
     context.font = "30px 'Press Start 2P', sans-serif";
@@ -222,6 +237,7 @@ function restartGame() {
     bird.y = boardHeight / 2;
     hastighetY = 0;
     pipeArray = [];
+    hastighetX = -3;
 }
 
 function handleRestartClick(event) {
